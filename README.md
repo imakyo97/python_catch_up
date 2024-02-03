@@ -82,21 +82,33 @@ $ asdf local poetry 1.7.1
 ```
 
 ## poetryの使い方
-1. プロジェクトの作成
+-  プロジェクトの作成
 ```
 $ poetry new python-catch-up
 ```
-2. poetryの導入（既存プロジェクトの場合）
+-  poetryの導入（既存プロジェクトの場合）
 ```
 $ poetry init
 ```
-3. 依存関係の指定
+- 依存関係の指定
 ```
 $ poetry add {パッケージ名}
 ```
-4. 依存関係のインストール
+- 依存関係のインストール
 ```
 $ poetry install
+```
+- 仮想環境でPythonスクリプトを実行
+```
+$ poetry run python {ファイル名}.py
+```
+- ネストされたシェルで仮想環境をアクティブにする
+```
+$ poetry shell
+```
+- 仮想環境を非アクティブにし、ネストされたシェルを終了する
+```
+$ exit
 ```
 
 
