@@ -1,7 +1,6 @@
 from fastapi import FastAPI
 
-app = FastAPI()
+from .routers import users
 
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
+app = FastAPI()
+app.router(users.router)
