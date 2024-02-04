@@ -60,6 +60,10 @@ $ poetry new python-catch-up
 ```
 $ poetry init
 ```
+- プロジェクトルートに仮想環境を持ってくる
+```
+$ poetry config virtualenvs.in-project true --local // --localをつけることでpoetry.tomlで管理できる
+```
 - 依存関係の指定
 ```
 $ poetry add {パッケージ名}
@@ -81,8 +85,21 @@ $ poetry shell
 $ exit
 ```
 
+## Ruffの設定
+PythonのリンターおよびコードフォーマッタであるRuffの設定をする
+1. VSCodeでRuffの拡張機能を追加
+2. ユーザー設定のsetting.jsonに以下の設定を追加
+```
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnType": true,
+  }
+```
+
 
 ## 参考
 - https://asdf-vm.com/ja-jp/guide/getting-started.html
 - https://dev.classmethod.jp/articles/asdf-python-introduction/
 - https://python-poetry.org/docs/
+- https://zenn.dev/takanori_is/articles/let-poetry-create-virtualenv-under-project-folder
+- https://qiita.com/ciscorn/items/bf78b7ad8e0e332f891b
