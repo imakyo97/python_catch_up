@@ -1,12 +1,12 @@
 from typing import List
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 class User(BaseModel):
-    id: int
-    name: str
-    favorite_technology: List[str]
+    id: int = Field(examples=[1])
+    name: str = Field(examples=["太郎"])
+    favorite_technology: List[str] = Field(examples=[["swift"]])
 
 class UserData(BaseModel):
-    name: str
-    favorite_technology: List[str]
+    name: str = Field(examples=["太郎"])
+    favorite_technology: List[str] = Field(examples=[["swift"]])
