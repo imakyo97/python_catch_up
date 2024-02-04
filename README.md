@@ -21,8 +21,8 @@ $ git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
 . "$HOME/.asdf/asdf.sh"
 ```
 
-## pythonのインストール
-1. pythonプラグインを表示
+## pythonを例にしたasdfの使い方
+1. プラグインを表示
 ```
 $ asdf plugin list all | grep python
 ```
@@ -49,36 +49,6 @@ $ asdf list python
 7. プロジェクトで使用するバージョンを指定
 ```
 $ asdf local python 3.12.1
-```
-
-## poetryのインストール
-1. poetryプラグインを表示
-```
-$ asdf plugin list all | grep poetry
-```
-2. プラグインをインストール
-```
-$ asdf plugin add poetry https://github.com/asdf-community/asdf-poetry.git
-```
-3. インストール済みのプラグインを一覧表示
-```
-$ asdf plugin list
-```
-4. インストール可能なバージョンを一覧表示
-```
-$ asdf list all poetry
-```
-5. バージョンを指定してインストール
-```
-$ asdf install poetry 1.7.1
-```
-6. インストール済みのバージョンを一覧表示
-```
-$ asdf list poetry
-```
-7. プロジェクトで使用するバージョンを指定
-```
-$ asdf local poetry 1.7.1
 ```
 
 ## poetryの使い方
