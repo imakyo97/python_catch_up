@@ -7,6 +7,9 @@ class User(BaseModel):
     name: str = Field(examples=["太郎"])
     favorite_technology: List[str] = Field(examples=[["swift"]])
 
+    class Config:
+        orm_mode = True
+
 class UserData(BaseModel):
     name: str = Field(examples=["太郎"])
-    favorite_technology: List[str] = Field(examples=[["swift"]])
+    favorite_technology: List[str] = Field(examples=[["swift"]])    

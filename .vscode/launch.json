@@ -5,7 +5,8 @@
             "name": "FastAPI : Debug",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}/python-catch-up/python_catch_up/main.py",
+            "cwd": "${workspaceFolder}/python-catch-up/python_catch_up/",
+            "program": "main.py",
             "console": "integratedTerminal",
             "python": "${workspaceFolder}/python-catch-up/.venv/bin/python"
         },
