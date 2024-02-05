@@ -1,5 +1,5 @@
-from python_catch_up.models.user import User, UserData
-from python_catch_up.models.error_response import MyException, not_found
+from python_catch_up.schemas.user import User, UserData
+from python_catch_up.schemas.error_response import MyException, not_found
 from typing import List
 
 from fastapi import APIRouter

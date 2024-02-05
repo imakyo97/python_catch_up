@@ -1,4 +1,4 @@
-from python_catch_up.models.error_response import MyException, my_exception_handler
+from python_catch_up.schemas.error_response import MyException, my_exception_handler
 
 import uvicorn
 from fastapi import FastAPI, Request

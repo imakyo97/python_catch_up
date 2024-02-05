@@ -14,3 +14,26 @@ $ uvicorn main:app --reload // ライブサーバーを起動
 ```
 $ exit
 ```
+
+# フォルダ構成
+```
+python-catch-up/
+├── python_catch_up/
+│   ├── database/
+│   ├── models/
+│   ├── routers/
+│   ├── schemas/
+│   ├── services/
+│   ├── __init__.py
+│   └── main.py
+├── test/
+├── poetry.lock
+├── poetry.toml
+├── pyproject.toml
+└── firebase.json
+```
+- `database/` : データベースの設定などのディレクトリ
+- `models/` : データベースモデルのディレクトリ
+- `routers/` : エンドポイント定義のディレクトリ
+- `schemas/` : APIモデルのディレクトリ
+- `services/` : DBアクセスなどのビジネスロジックのディレクトリ
