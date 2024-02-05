@@ -96,6 +96,13 @@ PythonのリンターおよびコードフォーマッタであるRuffの設定�
   }
 ```
 
+## Pylanceのimport警告
+VSCodeにPylanceの拡張機能を追加すると、`from fastapi import FastAPI`などで下記のエラーが発生する
+
+`インポート "fastapi" を解決できませんでしたPylancereport(MissingImports)`
+
+Pythonインタープリターを設定して、警告が出ないようにする
+1. コマンドパレット（Shift + Command + P）からPython: Select Interpreterコマンドを使用し、仮想環境を選択する
 
 ## 参考
 - https://asdf-vm.com/ja-jp/guide/getting-started.html
@@ -103,3 +110,4 @@ PythonのリンターおよびコードフォーマッタであるRuffの設定�
 - https://python-poetry.org/docs/
 - https://zenn.dev/takanori_is/articles/let-poetry-create-virtualenv-under-project-folder
 - https://qiita.com/ciscorn/items/bf78b7ad8e0e332f891b
+- https://code.visualstudio.com/docs/python/environments#_working-with-python-interpreters
