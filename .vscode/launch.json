@@ -1,0 +1,25 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "FastAPI : Debug",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/python-catch-up/python_catch_up/main.py",
+            "console": "integratedTerminal",
+            "python": "${workspaceFolder}/python-catch-up/.venv/bin/python"
+        },
+        // {
+        //     "name": "FastAPI : Debug",
+        //     "type": "debugpy",
+        //     "request": "launch",
+        //     "module": "uvicorn",
+        //     "cwd": "${workspaceFolder}/python-catch-up/python_catch_up/",
+        //     "args": [
+        //         "main:app",
+        //         "--reload",
+        //     ],
+        //     "python": "${workspaceFolder}/python-catch-up/.venv/bin/python"
+        // }
+    ]
+}
