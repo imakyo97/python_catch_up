@@ -104,6 +104,46 @@ VSCodeにPylanceの拡張機能を追加すると、`from fastapi import FastAPI
 Pythonインタープリターを設定して、警告が出ないようにする
 1. コマンドパレット（Shift + Command + P）からPython: Select Interpreterコマンドを使用し、仮想環境を選択する
 
+# Rancher Desktopのインストール
+Dockerの実行環境を用意するため、Rancher Desktopをインストールする
+1. https://rancherdesktop.io/ からRancher Desktopをインストール
+2. アプリケーションからRancher Desktopを起動
+3. Rancher Desktopの設定ダイアログで設定を選択し「Accept」押下
+    - ローカルで Kubernetes クラスタを動かす必要がない場合、Enable Kubernetesのチェックを外す
+    - containerdもしくはdockerd(moby)を選択。containerdの場合nerdctlコマンドになり、dockerdの場合dockerコマンドになる
+    - Configure PATHではAutomaticを選択することで、現在使用しているシェルにパスを通してくれる
+
+# redisサーバーの起動と停止
+1. `redis_container`という名前のredisコンテナをデタッチモード（バックグラウンド）で実行（初回のみ）
+```
+$ docker run --name redis_container -d redis
+```
+2. 停止しているコンテナを再開する
+```
+$ docker container ls --all // 全てのコンテナを表示
+$ docker container start redis_container // コンテナを再開
+```
+2. redisがコンテナ内で実行されているかを確認
+```
+$ docker ps
+```
+3. redisコンテナのログを確認
+```
+$ docker logs redis_container
+```
+4. redisのCLIを使用
+```
+$ docker exec -it redis_container redis-cli
+```
+5. redisのCLIを終了
+```
+> exit
+```
+6. redisコンテナの終了
+```
+$ docker stop redis_container
+```
+
 ## 参考
 - https://asdf-vm.com/ja-jp/guide/getting-started.html
 - https://dev.classmethod.jp/articles/asdf-python-introduction/
@@ -111,3 +151,5 @@ Pythonインタープリターを設定して、警告が出ないようにす�
 - https://zenn.dev/takanori_is/articles/let-poetry-create-virtualenv-under-project-folder
 - https://qiita.com/ciscorn/items/bf78b7ad8e0e332f891b
 - https://code.visualstudio.com/docs/python/environments#_working-with-python-interpreters
+- https://zenn.dev/miyajan/articles/migrate-from-docker-desktop-to-rancher-desktop
+- https://kinsta.com/jp/blog/redis-docker/
