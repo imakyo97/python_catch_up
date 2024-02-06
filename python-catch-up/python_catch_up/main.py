@@ -1,6 +1,8 @@
+from contextlib import asynccontextmanager
 from python_catch_up.database import database
 from python_catch_up.schemas.error_response import MyException, my_exception_handler
 from python_catch_up.routers import users_router
+from tortoise import Tortoise
 
 import uvicorn
 from fastapi import FastAPI, Request
@@ -21,20 +23,25 @@ tags_metadata = [
     },
 ]
 
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    await database.init(app=app)
+    yield
+    await Tortoise.close_connections()
+
 app = FastAPI(
     title="PythonCatchUpAPI",
     description= description,
     summary="Pythonキャッチアップのために作成するAPI",
     version="0.0.1",
     openapi_tags=tags_metadata,
+    lifespan=lifespan,
 )
 app.include_router(users_router.router)
 
 @app.exception_handler(MyException)
 def custom_my_exception_handler(request: Request, exc: MyException):
     return my_exception_handler(request=request, exc=exc)
-
-database.init(app=app)
 
 if __name__ == "__main__":
     uvicorn.run(app, host="127.0.0.1", port=8000)
