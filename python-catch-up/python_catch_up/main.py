@@ -1,8 +1,11 @@
 from contextlib import asynccontextmanager
+import os
+from fastapi.staticfiles import StaticFiles
+from python_catch_up.admin.constants import BASE_DIR
 from python_catch_up.database import database
-from python_catch_up.admin import admin
+from python_catch_up.admin import admin, admin_router
 from python_catch_up.schemas.error_response import MyException, my_exception_handler
-from python_catch_up.routers import admin_router, users_router
+from python_catch_up.routers import users_router
 from tortoise import Tortoise
 
 import uvicorn
@@ -42,6 +45,11 @@ app = FastAPI(
 )
 admin_app.include_router(admin_router.router)
 app.mount("/admin", admin_app)
+app.mount(
+    "/static",
+    StaticFiles(directory=os.path.join(BASE_DIR, "static")),
+    name="static",
+)
 app.include_router(users_router.router)
 
 @app.exception_handler(MyException)

@@ -2,7 +2,7 @@ import os
 from fastapi_admin.app import app as admin_app
 from fastapi_admin.providers.login import UsernamePasswordProvider
 import aioredis
-from python_catch_up.constants import BASE_DIR
+from python_catch_up.admin.constants import BASE_DIR
 from python_catch_up.models.models import Admin
 
 
