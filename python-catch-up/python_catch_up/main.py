@@ -2,7 +2,7 @@ from contextlib import asynccontextmanager
 from python_catch_up.database import database
 from python_catch_up.admin import admin
 from python_catch_up.schemas.error_response import MyException, my_exception_handler
-from python_catch_up.routers import users_router
+from python_catch_up.routers import admin_router, users_router
 from tortoise import Tortoise
 
 import uvicorn
@@ -40,6 +40,7 @@ app = FastAPI(
     openapi_tags=tags_metadata,
     lifespan=lifespan,
 )
+admin_app.include_router(admin_router.router)
 app.mount("/admin", admin_app)
 app.include_router(users_router.router)
 

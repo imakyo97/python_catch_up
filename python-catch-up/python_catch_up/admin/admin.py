@@ -12,7 +12,7 @@ login_provider = UsernamePasswordProvider(
 )
 
 async def startup():
-    redis = aioredis.from_url("redis://localhost:6379", encoding="utf8")
+    redis = aioredis.from_url("redis://127.0.0.1:6379", encoding="utf8")
     await admin_app.configure(
         logo_url="https://preview.tabler.io/static/logo-white.svg",
         template_folders=[os.path.join(BASE_DIR, "templates")],
