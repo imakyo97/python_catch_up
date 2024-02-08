@@ -1,7 +1,7 @@
 from typing import List
-from python_catch_up.models import models
-from python_catch_up.schemas import user
-from python_catch_up.schemas.error_response import MyException
+from models import models
+from schemas import user
+from schemas.error_response import MyException
 
 async def get_users() -> List[models.User]:
     return await models.User.all()

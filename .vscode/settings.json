@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "${workspaceFolder}/python-catch-up/python_catch_up/"
+    ]
+}

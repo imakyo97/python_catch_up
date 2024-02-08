@@ -1,6 +1,6 @@
 import os
-from python_catch_up.admin.constants import BASE_DIR
-from python_catch_up.models.models import Admin, User
+from admin.constants import BASE_DIR
+from models.models import Admin, User
 from fastapi_admin.app import app
 from fastapi_admin.resources import Link
 from fastapi_admin.file_upload import FileUpload

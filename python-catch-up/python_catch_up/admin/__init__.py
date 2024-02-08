@@ -1,1 +1,1 @@
-from python_catch_up.admin import resources
+from admin import resources

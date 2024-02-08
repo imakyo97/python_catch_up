@@ -1,11 +1,11 @@
 from contextlib import asynccontextmanager
 import os
 from fastapi.staticfiles import StaticFiles
-from python_catch_up.admin.constants import BASE_DIR
-from python_catch_up.database import database
-from python_catch_up.admin import admin, admin_router
-from python_catch_up.schemas.error_response import MyException, my_exception_handler
-from python_catch_up.routers import users_router
+from admin.constants import BASE_DIR
+from database import database
+from admin import admin, admin_router
+from schemas.error_response import MyException, my_exception_handler
+from routers import users_router
 from tortoise import Tortoise
 
 import uvicorn

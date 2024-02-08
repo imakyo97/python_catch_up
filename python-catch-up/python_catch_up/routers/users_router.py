@@ -1,9 +1,9 @@
-from python_catch_up.schemas.user import User, UserData
-from python_catch_up.schemas.error_response import not_found
+from schemas.user import User, UserData
+from schemas.error_response import not_found
 from typing import List
 
 from fastapi import APIRouter
-from python_catch_up.services import users_crud
+from services import users_crud
 
 router = APIRouter(
     prefix="/users",

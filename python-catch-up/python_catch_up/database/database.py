@@ -13,7 +13,7 @@ DB_URL = f"sqlite://{DB_PATH}"
 async def init(app: FastAPI):    
     await Tortoise.init(
         db_url=DB_URL,
-        modules={"models": ["python_catch_up.models.models"]},
+        modules={"models": ["models.models"]},
     )
     if not os.path.isfile(DB_PATH):
         await Tortoise.generate_schemas()
