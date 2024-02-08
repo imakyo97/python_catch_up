@@ -101,8 +101,20 @@ VSCodeにPylanceの拡張機能を追加すると、`from fastapi import FastAPI
 
 `インポート "fastapi" を解決できませんでしたPylancereport(MissingImports)`
 
-Pythonインタープリターを設定して、警告が出ないようにする
+**ライブラリの場合**：Pythonインタープリターを設定して、警告が出ないようにする
 1. コマンドパレット（Shift + Command + P）からPython: Select Interpreterコマンドを使用し、仮想環境を選択する
+
+**自作モジュールの場合**：settings.jsonで`python.analysis.extraPaths`を指定する
+1. コマンドパレット（Shift + Command + P）から基本設定：ワークスペース設定を開く
+2. python.analysis.extraPathsを設定する
+```
+{
+    "python.analysis.extraPaths": [
+        "${workspaceFolder}/python-catch-up/python_catch_up/"
+    ]
+}
+```
+
 
 # Rancher Desktopのインストール
 Dockerの実行環境を用意するため、Rancher Desktopをインストールする
