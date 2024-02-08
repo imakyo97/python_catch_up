@@ -10,7 +10,22 @@ class Admin(AbstractAdmin):
     intro = fields.TextField(default="")
     created_at = fields.DatetimeField(auto_now_add=True)
 
-class User(Model):
+class Programmer(Model):
     id = fields.IntField(pk=True)
     name = fields.CharField(20)
-    favorite_technology = fields.JSONField()
+    technologies: fields.ManyToManyRelation["Technology"] = fields.ManyToManyField(
+        model_name="models.Technology",
+        related_name="programmers"
+    )
+    
+    def __str__(self) -> str:
+        return self.name
+
+class Technology(Model):
+    id = fields.IntField(pk=True)
+    name = fields.CharField(20)
+    programmers = fields.ManyToManyRelation[Programmer]
+
+    def __str__(self) -> str:
+        return self.name
+    

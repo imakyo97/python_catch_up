@@ -1,6 +1,6 @@
 import os
 from admin.constants import BASE_DIR
-from models.models import Admin, User
+from models.models import Admin, Technology, Programmer
 from fastapi_admin.app import app
 from fastapi_admin.resources import Link
 from fastapi_admin.file_upload import FileUpload
@@ -17,12 +17,12 @@ class Home(Link):
     url = "/admin"
 
 @app.register
-class Users(Model):
-    label = "ユーザー管理"
-    model = User
+class Programmers(Model):
+    label = "プログラマー管理"
+    model = Programmer
     icon = "fas fa-users"
-    page_pre_title = "ユーザーリスト"
-    page_title = "ユーザー管理"
+    page_pre_title = "プログラマーリスト"
+    page_title = "プログラマー管理"
     filters = [
         filters.Search(
             name="id", 
@@ -40,7 +40,36 @@ class Users(Model):
     fields = [
         "id",
         "name",
-        "favorite_technology",
+        Field(
+            name="technologies",
+            label="technologies",
+            input_=inputs.ManyToMany(model=Technology)
+        ),
+    ]
+
+@app.register
+class Technology(Model):
+    label = "IT技術管理"
+    model = Technology
+    icon = "fas fa-code"
+    page_pre_title = "技術リスト"
+    page_title = "IT技術管理"
+    filters = [
+        filters.Search(
+            name="name", 
+            label="Name", 
+            search_mode="contains", 
+            placeholder="Search for name"
+        ),
+    ]
+    fields = [
+        "id",
+        "name",
+        Field(
+            name="programmers",
+            label="programmers", 
+            input_=inputs.ManyToMany(Programmer)
+        ),
     ]
 
 @app.register

@@ -5,7 +5,7 @@ from admin.constants import BASE_DIR
 from database import database
 from admin import admin, admin_router
 from schemas.error_response import MyException, my_exception_handler
-from routers import users_router
+from routers import programmers_router
 from tortoise import Tortoise
 
 import uvicorn
@@ -13,7 +13,7 @@ from fastapi import FastAPI, Request
 from fastapi_admin.app import app as admin_app
 
 description = """
-## Users
+## programmers
 ユーザーを管理するAPI
 
 - id: ユーザーID
@@ -23,7 +23,7 @@ description = """
 
 tags_metadata = [
     {
-        "name": "users",
+        "name": "programmers",
         "description": "ユーザー管理API"
     },
 ]
@@ -50,7 +50,7 @@ app.mount(
     StaticFiles(directory=os.path.join(BASE_DIR, "static")),
     name="static",
 )
-app.include_router(users_router.router)
+app.include_router(programmers_router.router)
 
 @app.exception_handler(MyException)
 def custom_my_exception_handler(request: Request, exc: MyException):
