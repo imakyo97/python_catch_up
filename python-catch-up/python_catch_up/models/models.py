@@ -15,7 +15,8 @@ class Programmer(Model):
     name = fields.CharField(20)
     technologies: fields.ManyToManyRelation["Technology"] = fields.ManyToManyField(
         model_name="models.Technology",
-        related_name="programmers"
+        related_name="programmers",
+        through="programmer_technology",
     )
     
     def __str__(self) -> str:
@@ -29,3 +30,9 @@ class Technology(Model):
     def __str__(self) -> str:
         return self.name
     
+class ProgrammerTechnology(Model):
+    programmer_id = fields.IntField()
+    technology_id = fields.IntField()
+
+    def __str__(self) -> str:
+        return f"{self.programmerId}"

@@ -1,6 +1,8 @@
 import os
+
 from admin.constants import BASE_DIR
-from models.models import Admin, Technology, Programmer
+from admin.custom_field import ProgrammerName, TechnologyName
+from models.models import Admin, Technology, Programmer, ProgrammerTechnology
 from fastapi_admin.app import app
 from fastapi_admin.resources import Link
 from fastapi_admin.file_upload import FileUpload
@@ -40,11 +42,12 @@ class Programmers(Model):
     fields = [
         "id",
         "name",
-        Field(
-            name="technologies",
-            label="technologies",
-            input_=inputs.ManyToMany(model=Technology)
-        ),
+        # うまく表示できない
+        # Field(
+        #     name="technologies",
+        #     label="technologies",
+        #     input_=inputs.ManyToMany(model=Technology)
+        # ),
     ]
 
 @app.register
@@ -65,11 +68,47 @@ class Technology(Model):
     fields = [
         "id",
         "name",
-        Field(
-            name="programmers",
-            label="programmers", 
-            input_=inputs.ManyToMany(Programmer)
+        # うまく表示できない
+        # Field(
+        #     name="programmers",
+        #     label="programmers", 
+        #     input_=inputs.ManyToMany(Programmer)
+        # ),
+    ]
+
+@app.register
+class ProgrammerTechnology(Model):
+    label = "プログラマーとIT技術の管理"
+    model = ProgrammerTechnology
+    icon = "fas fa-key"
+    page_pre_title = "技術リスト"
+    page_title = "IT技術管理"
+    filters = [
+        filters.Search(
+            name="programmer_id", 
+            label="programmerId", 
+            search_mode="contains", 
+            placeholder="Search for programmerId"
         ),
+        filters.Search(
+            name="technology_id", 
+            label="technologyId", 
+            search_mode="contains", 
+            placeholder="Search for technologyId"
+        ),
+    ]
+    fields = [
+        "id",
+        "programmer_id",
+        ProgrammerName(
+            name="programmer_id", 
+            label="programmer_name", 
+        ),
+        "technology_id",
+        TechnologyName(
+            name="technology_id", 
+            label="technology_name", 
+        )
     ]
 
 @app.register
