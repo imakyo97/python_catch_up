@@ -19,6 +19,6 @@ class Programmer(BaseModel):
 
 class ProgrammerData(BaseModel):
     name: str = Field(examples=["太郎"])
-    favorite_technology: List[str] = Field(examples=[["swift"]])
+    technologies: List[str] = Field(examples=[["swift"]])
 
 

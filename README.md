@@ -1,3 +1,13 @@
+# pip, asdf, poetryの関係性
+pipはパッケージ管理をするもので、Pythonのバージョン指定や仮想環境は作成できない
+
+asdfはpythonなどのバージョンを管理するもので、pythonパッケージの管理や仮想環境の作成はできない
+
+poetryはパッケージの管理と仮想環境の作成をするもので、pythonのバージョン指定はできない
+
+## 参考
+- https://zenn.dev/os1ma/articles/935f6e653f1052
+
 # 環境構築
 asdf + poetryで開発環境を構築
 
