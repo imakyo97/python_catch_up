@@ -16,7 +16,7 @@ class Programmer(Model):
     technologies: fields.ManyToManyRelation["Technology"] = fields.ManyToManyField(
         model_name="models.Technology",
         related_name="programmers",
-        through="programmer_technology",
+        through="ProgrammerTechnology",
     )
     
     def __str__(self) -> str:

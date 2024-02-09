@@ -42,12 +42,12 @@ class Programmers(Model):
     fields = [
         "id",
         "name",
-        # うまく表示できない
-        # Field(
-        #     name="technologies",
-        #     label="technologies",
-        #     input_=inputs.ManyToMany(model=Technology)
-        # ),
+        Field(
+            name="technologies",
+            label="technologies",
+            display=displays.InputOnly(),
+            input_=inputs.ManyToMany(model=Technology)
+        ),
     ]
 
 @app.register
@@ -68,12 +68,12 @@ class Technology(Model):
     fields = [
         "id",
         "name",
-        # うまく表示できない
-        # Field(
-        #     name="programmers",
-        #     label="programmers", 
-        #     input_=inputs.ManyToMany(Programmer)
-        # ),
+        Field(
+            name="programmers",
+            label="programmers", 
+            display=displays.InputOnly(),
+            input_=inputs.ManyToMany(Programmer)
+        ),
     ]
 
 @app.register
@@ -98,13 +98,25 @@ class ProgrammerTechnology(Model):
         ),
     ]
     fields = [
-        "id",
-        "programmer_id",
+        Field(
+            name="id",
+            label="id",
+            input_=inputs.DisplayOnly(),
+        ),
+        Field(
+            name="programmer_id",
+            label="programmer_id",
+            input_=inputs.DisplayOnly(),
+        ),
         ProgrammerName(
             name="programmer_id", 
             label="programmer_name", 
         ),
-        "technology_id",
+        Field(
+            name="technology_id",
+            label="technology_id",
+            input_=inputs.DisplayOnly(),
+        ),
         TechnologyName(
             name="technology_id", 
             label="technology_name", 
