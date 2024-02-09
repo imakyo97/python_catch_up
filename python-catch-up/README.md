@@ -10,6 +10,7 @@ $ docker compose up
 ```
 python-catch-up/
 ├── python_catch_up/
+│   ├── admin/
 │   ├── database/
 │   ├── models/
 │   ├── routers/
@@ -18,11 +19,14 @@ python-catch-up/
 │   ├── __init__.py
 │   └── main.py
 ├── test/
+├── docker-compose.yml
+├── Dockerfile
 ├── poetry.lock
 ├── poetry.toml
 ├── pyproject.toml
-└── firebase.json
+└── README.md
 ```
+- `admin/`：fastapi_adminで使用するディレクトリ
 - `database/` : データベースの設定などのディレクトリ
 - `models/` : データベースモデルのディレクトリ
 - `routers/` : エンドポイント定義のディレクトリ
