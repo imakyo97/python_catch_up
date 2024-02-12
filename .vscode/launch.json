@@ -8,7 +8,10 @@
             "cwd": "${workspaceFolder}/python-catch-up/python_catch_up/",
             "program": "main.py",
             "console": "integratedTerminal",
-            "python": "${workspaceFolder}/python-catch-up/.venv/bin/python"
+            "python": "${workspaceFolder}/python-catch-up/.venv/bin/python",
+            "env": {
+                "APP_ENV": "dev"
+            }
         },
         // {
         //     "name": "FastAPI : Debug",

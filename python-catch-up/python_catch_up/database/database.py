@@ -1,21 +1,20 @@
+import config
 import os
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from tortoise import Tortoise
 from tortoise.exceptions import DoesNotExist, IntegrityError
 
-DB_PATH = "data/db.sqlite3"
-DB_URL = f"sqlite://{DB_PATH}"
-
 # @app.on_eventが非推奨のためlifespanを使用するが、lifespanを使用すると@app.on_eventが処理されなくなる
 # register_tortoise内部で@app.on_eventを使用しているため、DBをTortoise.initで初期化する
 # https://github.com/tortoise/tortoise-orm/issues/1450
-async def init(app: FastAPI):    
+async def init(app: FastAPI):
+    settings = config.get_settings()  
     await Tortoise.init(
-        db_url=DB_URL,
+        db_url=settings.db_url,
         modules={"models": ["models.models"]},
     )
-    if not os.path.isfile(DB_PATH):
+    if not os.path.isfile(settings.db_path):
         await Tortoise.generate_schemas()
     
     # register_tortoise内部のハンドラーを定義
