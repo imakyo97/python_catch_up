@@ -1,8 +1,6 @@
-# pytestの前後処理
-# https://qiita.com/mwakizaka/items/e51c604155633ccd33dd
-
 import os
 import shutil
+import pytest
 import pytest_asyncio
 from asgi_lifespan import LifespanManager
 from main import app
@@ -15,7 +13,7 @@ def setup_dir():
     shutil.rmtree(target_dir)
     os.mkdir(target_dir)
 
-@pytest_asyncio.fixture(scope="session", autouse=True)
+@pytest.fixture(scope="session", autouse=True)
 def setup():
     setup_dir()
 
