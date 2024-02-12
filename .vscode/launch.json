@@ -24,6 +24,15 @@
         //         "--reload",
         //     ],
         //     "python": "${workspaceFolder}/python-catch-up/.venv/bin/python"
-        // }
+        // },
+        {
+            "name": "Caluculator : Debug",
+            "type": "debugpy",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/calculator/app",
+            "program": "main.py",
+            "console": "integratedTerminal",
+            "python": "${workspaceFolder}/python-catch-up/.venv/bin/python",
+        },
     ]
 }
