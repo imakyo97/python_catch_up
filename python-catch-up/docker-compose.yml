@@ -8,6 +8,7 @@ services:
     build: .
     ports:
       - 8000:8000
+    command: ["python", "main.py"]
   redis:
     image: redis:latest
     container_name: "redis"
