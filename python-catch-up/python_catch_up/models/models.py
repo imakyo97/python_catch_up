@@ -35,4 +35,4 @@ class ProgrammerTechnology(Model):
     technology_id = fields.IntField()
 
     def __str__(self) -> str:
-        return f"{self.programmerId}"
+        return f"{self.programmer_id}"
