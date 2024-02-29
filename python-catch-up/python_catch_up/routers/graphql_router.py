@@ -1,6 +1,7 @@
 from typing import List
 import strawberry
 from strawberry.fastapi import GraphQLRouter
+from strawberry.schema.config import StrawberryConfig
 
 from schemas import graphql_schemas
 from services.graphql_programmers_crud import (
@@ -11,6 +12,9 @@ from services.graphql_programmers_crud import (
     delete_programmer,
 )
 
+@strawberry.type
+class ListMetadata:
+    count: int
 
 @strawberry.type
 class Query:
@@ -19,8 +23,12 @@ class Query:
         return "Hello World"
 
     @strawberry.field
-    async def programmers(self) -> List[graphql_schemas.Programmer]:
+    async def allProgrammers(self) -> List[graphql_schemas.Programmer]:
         return await get_programmers()
+    
+    @strawberry.field
+    async def _allProgrammersMeta(self) -> ListMetadata:
+        return ListMetadata(count= len(await get_programmers()))
     
     @strawberry.field
     async def programmer(self, id: strawberry.ID) -> graphql_schemas.Programmer:
@@ -40,5 +48,5 @@ class Mutation:
     async def delete_programmer(self, id: strawberry.ID) -> graphql_schemas.Programmer:
         return await delete_programmer(programmer_id=int(id))
 
-schema = strawberry.Schema(query=Query, mutation=Mutation)
+schema = strawberry.Schema(query=Query, mutation=Mutation, config=StrawberryConfig(auto_camel_case=False))
 graphql_app = GraphQLRouter(schema)

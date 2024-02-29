@@ -11,6 +11,8 @@ from tortoise import Tortoise
 import uvicorn
 from fastapi import FastAPI, Request
 from fastapi_admin.app import app as admin_app
+from fastapi.middleware.cors import CORSMiddleware
+
 
 description = """
 ## programmers
@@ -43,6 +45,12 @@ app = FastAPI(
     openapi_tags=tags_metadata,
     lifespan=lifespan,
 )
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],  # CORSではhttp://localhost:3000のみ許可
+    allow_methods=["POST"],  # CORSではPOSTのみ許可
+)
+
 admin_app.include_router(admin_router.router)
 app.mount("/admin", admin_app)
 app.mount(
