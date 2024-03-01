@@ -2,7 +2,7 @@ import os
 
 from admin.constants import BASE_DIR
 from admin.custom_field import ProgrammerName, TechnologyName
-from models.models import Admin, Technology, Programmer, ProgrammerTechnology
+from models import models
 from fastapi_admin.app import app
 from fastapi_admin.resources import Link
 from fastapi_admin.file_upload import FileUpload
@@ -21,7 +21,7 @@ class Home(Link):
 @app.register
 class Programmers(Model):
     label = "プログラマー管理"
-    model = Programmer
+    model = models.Programmer
     icon = "fas fa-users"
     page_pre_title = "プログラマーリスト"
     page_title = "プログラマー管理"
@@ -46,14 +46,14 @@ class Programmers(Model):
             name="technologies",
             label="technologies",
             display=displays.InputOnly(),
-            input_=inputs.ManyToMany(model=Technology)
+            input_=inputs.ManyToMany(model=models.Technology)
         ),
     ]
 
 @app.register
 class Technology(Model):
     label = "IT技術管理"
-    model = Technology
+    model = models.Technology
     icon = "fas fa-code"
     page_pre_title = "技術リスト"
     page_title = "IT技術管理"
@@ -72,14 +72,14 @@ class Technology(Model):
             name="programmers",
             label="programmers", 
             display=displays.InputOnly(),
-            input_=inputs.ManyToMany(Programmer)
+            input_=inputs.ManyToMany(models.Programmer)
         ),
     ]
 
 @app.register
 class ProgrammerTechnology(Model):
     label = "プログラマーとIT技術の管理"
-    model = ProgrammerTechnology
+    model = models.ProgrammerTechnology
     icon = "fas fa-key"
     page_pre_title = "技術リスト"
     page_title = "IT技術管理"
@@ -126,7 +126,7 @@ class ProgrammerTechnology(Model):
 @app.register
 class AdminResource(Model):
     label = "管理者"
-    model = Admin
+    model = models.Admin
     icon = "fas fa-user"
     page_pre_title = "admin list"
     page_title = "admin model"
