@@ -21,7 +21,7 @@ allow_methodsで`http://localhost:3000`からのPOSTリクエストを許可
 - https://fastapi.tiangolo.com/ja/tutorial/cors/
 
 ## Cannot query field 'allProgrammers' on type 'Query'. エラー
-ra-data-graphql-simple関数は特定のGraphQL文法で書かれたGraphQLサーバーに対して機能するため、query field に指定される `all〇〇` と `_all〇〇` を定義していない場合、以下のエラーが発生する
+ra-data-graphql-simple関数は特定のGraphQL文法で書かれたGraphQLサーバーに対して機能するため、query field に指定される `all〇〇` と `_all〇〇Meta` を定義していない場合、以下のエラーが発生する
 
 ※以下のログで `app    |` となっているのはDockerで起動しているため
 ```shell
@@ -41,7 +41,7 @@ app    |    |   ^
 app    | 13 |     count
 app    | INFO:     172.26.0.1:41782 - "POST /graphql HTTP/1.1" 200 OK
 ```
-queryに合わせるため、以下のように  `all〇〇` と `_all〇〇` を定義する
+queryに合わせるため、以下のように  `all〇〇` と `_all〇〇Meta` を定義する
 ```python
 @strawberry.type
 class Query:
