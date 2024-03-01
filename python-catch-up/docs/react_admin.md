@@ -1,7 +1,7 @@
 # react_adminのまとめ
 
 ## CORSエラー
-http://localhost:3000（ReactAdmin）から http://localhost:8000（FastAPI）へのアクセスで以下のようなCORSエラーが発生した
+`http://localhost:3000`（ReactAdmin）から `http://localhost:8000`（FastAPI）へのアクセスで以下のようなCORSエラーが発生した
 ```txt
 Access to fetch at 'http://localhost:8000/graphql' from origin 'http://localhost:3000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
 ```
@@ -13,8 +13,8 @@ app.add_middleware(
     allow_methods=["POST"],  # CORSではPOSTのみ許可
 )
 ```
-allow_originsでlocalhost:3000からのアクセスを許可
-allow_methodsでlocalhost:3000からのPOSTリクエストを許可
+allow_originsで`http://localhost:3000`からのアクセスを許可  
+allow_methodsで`http://localhost:3000`からのPOSTリクエストを許可
 
 参考:
 - https://developer.mozilla.org/ja/docs/Web/HTTP/CORS
