@@ -29,7 +29,7 @@ async def get_programmer(programmer_id: int) -> graphql_schemas.Programmer:
     programmer = await __to_schema_programmer(orm_programmer=orm_programmer)
     return programmer
 
-async def create_programmer(programmer_data: graphql_schemas.ProgrammerData) -> graphql_schemas.Programmer:
+async def create_programmer(programmer_data: graphql_schemas.ProgrammerFilter) -> graphql_schemas.Programmer:
     programmer = await models.Programmer.create(name=programmer_data.name)
     for technology_name in programmer_data.technologies:
         technology, created = await models.Technology.get_or_create(name=technology_name)
@@ -37,7 +37,7 @@ async def create_programmer(programmer_data: graphql_schemas.ProgrammerData) -> 
     programmer = await __to_schema_programmer(orm_programmer=programmer)
     return programmer
 
-async def update_programmer(programmer_id: int, programmer_data: graphql_schemas.ProgrammerData) -> graphql_schemas.Programmer:
+async def update_programmer(programmer_id: int, programmer_data: graphql_schemas.ProgrammerFilter) -> graphql_schemas.Programmer:
     programmer = await models.Programmer.get_or_none(id=programmer_id)
     if not programmer:
         raise Exception(

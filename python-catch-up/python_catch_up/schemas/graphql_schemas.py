@@ -14,6 +14,10 @@ class Programmer:
     technologies: List[Technology]
 
 @strawberry.input
-class ProgrammerData:
+class ProgrammerFilter:
     name: str
     technologies: List[str]
+
+@strawberry.type
+class ListMetadata:
+    count: int
