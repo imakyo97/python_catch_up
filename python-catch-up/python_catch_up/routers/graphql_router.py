@@ -11,6 +11,13 @@ from services.graphql_programmers_crud import (
     update_programmer,
     delete_programmer,
 )
+from services.graphql_clients_crud import (
+    get_clients, 
+    get_client,
+    create_client,
+    update_client,
+    delete_client,
+)
 
 @strawberry.type
 class Query:
@@ -29,6 +36,18 @@ class Query:
     @strawberry.field
     async def programmer(self, id: strawberry.ID) -> graphql_schemas.Programmer:
         return await get_programmer(programmer_id=int(id))
+    
+    @strawberry.field
+    async def allClients(self) -> List[graphql_schemas.Client]:
+        return await get_clients()
+    
+    @strawberry.field
+    async def _allClientsMeta(self) -> graphql_schemas.ListMetadata:
+        return graphql_schemas.ListMetadata(count= len(await get_clients()))
+
+    @strawberry.field
+    async def Client(self, id: strawberry.ID) -> graphql_schemas.Client:
+        return await get_client(client_id=int(id))
 
 @strawberry.type
 class Mutation:
@@ -43,6 +62,18 @@ class Mutation:
     @strawberry.mutation
     async def deleteProgrammer(self, id: strawberry.ID) -> graphql_schemas.Programmer:
         return await delete_programmer(programmer_id=int(id))
+    
+    @strawberry.mutation
+    async def createClient(self, client_data: graphql_schemas.ClientData) -> graphql_schemas.Client:
+        return await create_client(client_data=client_data)
+
+    @strawberry.mutation
+    async def updateClient(self, id: strawberry.ID, client_data: graphql_schemas.ClientData) -> graphql_schemas.Client:
+        return await update_client(client_id=int(id), client_data=client_data)
+    
+    @strawberry.mutation
+    async def deleteClient(self, id: strawberry.ID) -> graphql_schemas.Client:
+        return await delete_client(client_id=int(id))
 
 schema = strawberry.Schema(query=Query, mutation=Mutation, config=StrawberryConfig(auto_camel_case=False))
 graphql_app = GraphQLRouter(schema)
