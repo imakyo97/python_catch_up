@@ -36,3 +36,41 @@ class ProgrammerTechnology(Model):
 
     def __str__(self) -> str:
         return f"{self.programmer_id}"
+
+class Client(Model):
+    id = fields.BigIntField(pk=True)
+    name = fields.CharField(255)
+    created_at = fields.DatetimeField(auto_now_add=True)
+    updated_at = fields.DatetimeField(auto_now=True)
+    deleted_at = fields.DatetimeField(null=True)
+
+class Project(Model):
+    id = fields.BigIntField(pk=True)
+    client_id = fields.ForeignKeyField(model_name="models.Client", related_name="projects")
+    name = fields.CharField(255)
+    start_date = fields.DateField()
+    end_date = fields.DateField()
+    created_at = fields.DatetimeField(auto_now_add=True)
+    updated_at = fields.DatetimeField(auto_now=True)
+    deleted_at = fields.DatetimeField(null=True)
+
+class ProjectSlot(Model):
+    id = fields.BigIntField(pk=True)
+    project_id = fields.ForeignKeyField(model_name="models.Project", related_name="project_slots")
+    name = fields.CharField(255)
+    start_date = fields.DateField()
+    end_date = fields.DateField()
+    budget = fields.IntField()
+    created_at = fields.DatetimeField(auto_now_add=True)
+    updated_at = fields.DatetimeField(auto_now=True)
+    deleted_at = fields.DatetimeField(null=True)
+
+class ProjectBudget(Model):
+    id = fields.BigIntField(pk=True)
+    project_id = fields.ForeignKeyField(model_name="models.Project", related_name="project_budgets")
+    start_date = fields.DateField()
+    end_date = fields.DateField()
+    budget = fields.IntField()
+    created_at = fields.DatetimeField(auto_now_add=True)
+    updated_at = fields.DatetimeField(auto_now=True)
+    deleted_at = fields.DatetimeField(null=True)
