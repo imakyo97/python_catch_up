@@ -4,8 +4,9 @@ from fastapi.staticfiles import StaticFiles
 from admin.constants import BASE_DIR
 from database import database
 from admin import admin, admin_router
+from graphql_api.schemas.operations.client import graphql_app
 from schemas.error_response import MyException, my_exception_handler
-from routers import programmers_router, graphql_router
+from routers import programmers_router
 from tortoise import Tortoise
 
 import uvicorn
@@ -59,7 +60,7 @@ app.mount(
     name="static",
 )
 app.include_router(programmers_router.router)
-app.include_router(graphql_router.graphql_app, prefix="/graphql")
+app.include_router(graphql_app, prefix="/graphql")
 
 @app.exception_handler(MyException)
 def custom_my_exception_handler(request: Request, exc: MyException):
