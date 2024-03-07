@@ -8,7 +8,17 @@ GraphQLのデータモデルを表すために作成された構文をスキー�
 ### スキーマファースト
 SDLを定義し、SDLをもとにコードを実装する
 
-参考：https://zenn.dev/chillnn_tech/articles/15462cffcdecd3
+### fastapiに対応するGraphQLライブラリ
+今回使用しているstrawberryはコードファーストなGraphQLライブラリであるため、SDLからschemaコードをうまく自動生成することができない。  
+SDLからschemaコードの自動生成はできるが、リゾルバーとの連携がうまくできないため生成されたコードに対して追記する形でリゾルバーを書く必要がある。
+
+他ライブラリの [ariadne](https://ariadnegraphql.org/) は、スキーマファーストなライブラリでSDLからschemaコードを作成でき、リゾルバーとの連携もうまくできそう。
+
+参考
+- https://zenn.dev/chillnn_tech/articles/15462cffcdecd3
+- https://fastapi.tiangolo.com/how-to/graphql/#graphql-libraries
+- https://strawberry.rocks/docs/general/schema-basics#schema-basics
+
 
 ## Strawberryでのコード自動生成
 ### コードからSDLを出力する（コードファースト）
