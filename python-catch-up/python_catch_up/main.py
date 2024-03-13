@@ -45,6 +45,7 @@ app = FastAPI(
     version="0.0.1",
     openapi_tags=tags_metadata,
     lifespan=lifespan,
+    servers=[{"url": "http://localhost:8000"}]
 )
 app.add_middleware(
     CORSMiddleware,
