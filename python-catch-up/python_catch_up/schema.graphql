@@ -1,0 +1,29 @@
+type Client {
+  id: ID!
+  name: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+input ClientData {
+  name: String!
+}
+
+"""Date with time (isoformat)"""
+scalar DateTime
+
+type ListMetadata {
+  count: Int!
+}
+
+type Mutation {
+  createClient(client_data: ClientData!): Client!
+  updateClient(id: ID!, client_data: ClientData!): Client!
+  deleteClient(id: ID!): Client!
+}
+
+type Query {
+  allClients: [Client!]!
+  _allClientsMeta: ListMetadata!
+  Client(id: ID!): Client!
+}
