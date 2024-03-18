@@ -6,7 +6,7 @@ from database import database
 from admin import admin, admin_router
 from graphql_api.schemas.operations.client import graphql_app
 from schemas.error_response import MyException, my_exception_handler
-from routers import programmers_router, client
+from routers import programmers_router, client, project
 from tortoise import Tortoise
 
 import uvicorn
@@ -62,6 +62,7 @@ app.mount(
 )
 app.include_router(programmers_router.router)
 app.include_router(client.router)
+app.include_router(project.router)
 app.include_router(graphql_app, prefix="/graphql")
 
 @app.exception_handler(MyException)

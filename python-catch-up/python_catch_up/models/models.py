@@ -46,7 +46,7 @@ class Client(Model):
 
 class Project(Model):
     id = fields.BigIntField(pk=True)
-    client_id = fields.ForeignKeyField(model_name="models.Client", related_name="projects")
+    client = fields.ForeignKeyField(model_name="models.Client", related_name="projects")
     name = fields.CharField(255)
     start_date = fields.DateField()
     end_date = fields.DateField()
